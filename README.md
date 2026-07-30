@@ -5,14 +5,24 @@ Generate, format, copy, download, and inspect bounded batches of UUIDv4 or time-
 ## Features
 
 - Cryptographically random UUIDv4 and time-ordered UUIDv7 generation
-- Batch presets and bounded custom counts
-- Canonical, compact, braced, JSON, SQL, line, and comma formats
-- Batch uniqueness reporting, copy, and download
-- UUID validation with version, variant, and timestamp inspection
+- Quick batch presets plus bounded custom quantities
+- One-per-line, comma-separated, JSON-array, and SQL-quoted list layouts
+- Canonical, uppercase, compact, and braced value formatting without regenerating the batch
+- Batch count and uniqueness reporting with clear and regenerate controls
+- Copy and tool-named text-file downloads for the formatted batch
+- UUID validation with version, RFC variant, canonical form, and UUIDv7 timestamp inspection
 
 ## Screenshot
 
 ![UUID v4 & v7 Generator interface](./public/tool-preview.webp)
+
+## How to use
+
+1. Select UUIDv4 for random identifiers or UUIDv7 for time-ordered identifiers.
+2. Choose a count preset or enter the required bounded batch size.
+3. Select the list layout and optional uppercase, compact, or brace formatting, then generate.
+4. Change formatting without replacing the generated values, then copy, download, clear, or regenerate the batch.
+5. Paste any UUID into the inspector, or send the first generated value there, to review validity, version, variant, canonical form, and timestamp details.
 
 ## Browser support and limitations
 

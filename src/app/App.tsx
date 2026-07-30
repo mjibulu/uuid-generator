@@ -52,9 +52,11 @@ export function App() {
           <summary>How to use this tool</summary>
           <div className="information-content">
             <ol>
-            <li>{"Select UUIDv4 or UUIDv7 and choose the required batch size."}</li>
-            <li>{"Generate a batch, then change formatting without regenerating its values."}</li>
-            <li>{"Copy or download the batch, or paste one UUID into the validator for inspection."}</li>
+            <li>{"Select UUIDv4 for random identifiers or UUIDv7 for time-ordered identifiers."}</li>
+            <li>{"Choose a count preset or enter the required bounded batch size."}</li>
+            <li>{"Select the list layout and optional uppercase, compact, or brace formatting, then generate."}</li>
+            <li>{"Change formatting without replacing the generated values, then copy, download, clear, or regenerate the batch."}</li>
+            <li>{"Paste any UUID into the inspector, or send the first generated value there, to review validity, version, variant, canonical form, and timestamp details."}</li>
             </ol>
           </div>
         </details>
