@@ -1,0 +1,362 @@
+.json-controls .checkbox-field {
+  align-self: center;
+  min-height: 44px;
+  padding: .65rem .75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+  background: var(--color-bg);
+}
+
+.json-editor-column .tool-actions {
+  margin: 0;
+}
+
+.json-pointer-panel .copy-button {
+  justify-self: start;
+}
+
+.uuid-workbench {
+  display: grid;
+  grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+.uuid-builder,
+.uuid-output-panel,
+.uuid-inspector {
+  display: grid;
+  min-width: 0;
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.uuid-builder {
+  grid-row: span 2;
+}
+
+.uuid-inspector {
+  grid-column: 2;
+}
+
+.uuid-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.uuid-section-heading .eyebrow {
+  color: var(--color-accent);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.uuid-section-heading h2 {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+}
+
+.uuid-section-heading > span {
+  color: var(--color-text-muted);
+  font-size: .72rem;
+}
+
+.uuid-version-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .6rem;
+}
+
+.uuid-version-switch > label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.uuid-version-switch input {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.uuid-version-switch span {
+  display: grid;
+  gap: .2rem;
+  min-height: 78px;
+  align-content: center;
+  padding: .75rem;
+  color: var(--color-text-muted);
+  font-size: .72rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg);
+}
+
+.uuid-version-switch strong {
+  color: var(--color-text);
+  font-size: .88rem;
+}
+
+.uuid-version-switch label.active span {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+.uuid-version-switch input:focus-visible + span {
+  outline: 3px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+.uuid-count-row {
+  display: grid;
+  grid-template-columns: minmax(120px, .45fr) minmax(0, 1fr);
+  align-items: end;
+  gap: .75rem;
+}
+
+.uuid-count-row > label,
+.uuid-format-grid > label:first-child,
+.uuid-inspector > label {
+  display: grid;
+  gap: .4rem;
+  color: var(--color-text-muted);
+  font-size: .78rem;
+  font-weight: 650;
+}
+
+.uuid-count-row input,
+.uuid-format-grid select,
+.uuid-inspector > label input {
+  width: 100%;
+  min-height: 42px;
+  padding: .55rem .65rem;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+}
+
+.uuid-count-presets {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .3rem;
+}
+
+.uuid-count-presets button {
+  min-height: 42px;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+  cursor: pointer;
+}
+
+.uuid-count-presets button.active {
+  color: var(--color-accent-contrast);
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+}
+
+.uuid-format-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .6rem;
+}
+
+.uuid-format-grid > label:first-child {
+  grid-column: 1 / -1;
+}
+
+.uuid-format-grid .checkbox-field {
+  min-height: 42px;
+  padding: .55rem .65rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+}
+
+.uuid-builder .tool-actions,
+.uuid-output-panel .tool-actions {
+  margin: 0;
+}
+
+.uuid-stability-note {
+  color: var(--color-text-muted);
+  font-size: .74rem;
+  line-height: 1.5;
+}
+
+.uuid-output-panel textarea {
+  width: 100%;
+  min-height: 330px;
+  resize: vertical;
+  padding: 1rem;
+  color: var(--color-text);
+  font: 500 .82rem/1.6 ui-monospace, SFMono-Regular, Consolas, monospace;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg);
+}
+
+.uuid-output-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .4rem 1rem;
+  color: var(--color-text-muted);
+  font-size: .72rem;
+}
+
+.uuid-inspection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .6rem;
+  margin: 0;
+}
+
+.uuid-inspection-grid > div {
+  display: grid;
+  min-width: 0;
+  gap: .25rem;
+  padding: .7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+  background: var(--color-bg);
+}
+
+.uuid-inspection-grid dt {
+  color: var(--color-text-muted);
+  font-size: .68rem;
+}
+
+.uuid-inspection-grid dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: .82rem;
+}
+
+.uuid-inspection-grid code {
+  font-size: .76rem;
+}
+
+.uuid-inspector > .copy-button {
+  justify-self: start;
+}
+
+.timestamp-input-panel .tool-actions,
+.timestamp-result-panel .tool-actions {
+  margin: 0;
+}
+
+.timestamp-result-list .copy-button {
+  min-height: 32px;
+  padding: .35rem .55rem;
+  font-size: .7rem;
+}
+
+.html-option-grid > label:not(.checkbox-field) {
+  display: grid;
+  gap: .4rem;
+  color: var(--color-text-muted);
+  font-size: .76rem;
+  font-weight: 650;
+}
+
+.html-option-grid .checkbox-field,
+.html-minify-options .checkbox-field {
+  min-height: 42px;
+  padding: .55rem .65rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+}
+
+.html-editor-panel .tool-actions {
+  margin: 0;
+}
+
+.html-workbench > .tool-actions {
+  justify-content: center;
+  margin: 0;
+}
+
+.url-result-panel .tool-actions {
+  margin: 0;
+}
+
+.sql-input-actions .secondary-button {
+  min-height: 42px;
+  margin: 0;
+}
+
+.sql-output-panel .tool-actions {
+  margin: 0;
+}
+
+.sql-output-panel .secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+}
+
+.sql-output-panel .secondary-button svg {
+  width: 16px;
+}
+
+.cron-reference-row .secondary-button {
+  min-height: 42px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.cron-summary-panel .tool-actions {
+  margin: 0;
+}
+
+@media (max-width: 850px) {
+.uuid-workbench {
+    grid-template-columns: 1fr;
+  }
+
+.uuid-builder {
+    grid-row: auto;
+  }
+
+.uuid-inspector {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 560px) {
+.timestamp-result-list .copy-button {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+.uuid-version-switch,
+.uuid-count-row,
+.uuid-format-grid,
+.uuid-inspection-grid {
+    grid-template-columns: 1fr;
+  }
+
+.uuid-format-grid > label:first-child {
+    grid-column: auto;
+  }
+
+.uuid-count-presets {
+    grid-template-columns: repeat(5, minmax(42px, 1fr));
+    overflow-x: auto;
+  }
+}
