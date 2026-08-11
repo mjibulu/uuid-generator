@@ -12,16 +12,16 @@ test("UUID generation, formatting, and inspection stay local", async ({
   await page.goto("/");
   await page.getByRole("radio", { name: /Version 7/u }).check();
   await page.getByRole("button", { name: "5", exact: true }).click();
-  await page.getByRole("button", { name: "Generate UUIDs" }).click();
+  await page.getByRole("button", { name: "Generate" }).click();
 
   const output = page.getByRole("textbox", { name: "Version 7 UUIDs" });
   const original = (await output.inputValue()).split("\n");
   expect(original).toHaveLength(5);
 
-  await page.getByRole("combobox", { name: "Output layout" }).selectOption("json");
+  await page.getByRole("combobox", { name: "Layout" }).selectOption("json");
   expect(JSON.parse(await output.inputValue())).toEqual(original);
-  await page.getByRole("button", { name: "Inspect first UUID" }).click();
-  await expect(page.getByText(/Valid UUID/u)).toContainText("version 7");
+  await page.getByRole("button", { name: "Inspect first" }).click();
+  await expect(page.getByRole("status")).toContainText("v7");
 
   networkGuard.assertNoExternalRequests();
 });

@@ -1,0 +1,83 @@
+{
+  "tools": {
+    "developer": {
+      "uuid-generator": {
+        "tool": {
+          "headings": {
+            "generator": "Generator",
+            "create": "Create UUIDs",
+            "current": "Batch",
+            "generated": "UUIDs",
+            "validator": "Validator",
+            "inspect": "Inspect UUID"
+          },
+          "labels": {
+            "generated": "Generated {time}",
+            "version": "Version",
+            "count": "Count",
+            "countPresets": "Count presets",
+            "layout": "Layout",
+            "uppercase": "Uppercase",
+            "hyphens": "Hyphens",
+            "braces": "Braces",
+            "outputAria": "Version {version} UUIDs",
+            "inspectInput": "UUID",
+            "canonical": "Canonical",
+            "variant": "Variant",
+            "embeddedTime": "Embedded time",
+            "noTimestamp": "None",
+            "unknown": "Unknown"
+          },
+          "versions": {
+            "four": "Version 4",
+            "random": "Random",
+            "seven": "Version 7",
+            "ordered": "Time ordered"
+          },
+          "layouts": {
+            "lines": "One per line",
+            "comma": "Comma separated",
+            "json": "JSON array",
+            "sql": "SQL quoted list"
+          },
+          "actions": {
+            "generate": "Generate",
+            "clear": "Clear",
+            "copy": "Copy",
+            "download": "Download",
+            "inspectFirst": "Inspect first",
+            "copyCanonical": "Copy"
+          },
+          "descriptions": {
+            "stability": ""
+          },
+          "counts": {
+            "unique": "{unique}/{total} unique",
+            "identifiers": "{count, plural, one {# identifier} other {# identifiers}}",
+            "characters": "{count} characters"
+          },
+          "empty": {
+            "batch": "No UUIDs yet.",
+            "inspector": "Enter a UUID to inspect it."
+          },
+          "placeholders": {
+            "output": "Generate UUIDs.",
+            "uuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+          },
+          "messages": {
+            "valid": "Valid · v{version} · {variant}"
+          },
+          "variants": {
+            "RFC": "RFC",
+            "NCS": "NCS",
+            "Microsoft": "Microsoft",
+            "reserved": "reserved"
+          },
+          "errors": {
+            "invalid": "Enter a valid UUID."
+          }
+        }
+      }
+    }
+  }
+}

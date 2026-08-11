@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useLocale, useTranslations } from "use-intl";
 import { CopyButton } from "../components/CopyButton";
 import { DownloadButton } from "../components/DownloadButton";
 import { ToolActions } from "../components/ToolActions";
@@ -6,6 +7,8 @@ import { ValidationMessage } from "../components/ValidationMessage";
 import { formatUuids, generateUuids, parseUuid, type UuidOutputFormat, type UuidVersion, } from "../lib/public-tools/uuid";
 const COUNT_PRESETS = [1, 5, 10, 25, 100] as const;
 export function UuidGeneratorTool() {
+    const locale = useLocale();
+    const t = useTranslations("tools.developer.uuid-generator.tool");
     const [count, setCount] = useState(5);
     const [version, setVersion] = useState<UuidVersion>(4);
     const [uppercase, setUppercase] = useState(false);
@@ -34,35 +37,39 @@ export function UuidGeneratorTool() {
       <section className="uuid-builder" aria-labelledby="uuid-builder-heading">
         <div className="uuid-section-heading">
           <div>
-            <p className="eyebrow">Batch generator</p>
-            <h2 id="uuid-builder-heading">Create UUIDs</h2>
+            <p className="eyebrow">{t("headings.generator")}</p>
+            <h2 id="uuid-builder-heading">{t("headings.create")}</h2>
           </div>
-          {generatedAt ? (<span>Generated {generatedAt.toLocaleTimeString()}</span>) : null}
+          {generatedAt ? (<span>
+              {t("labels.generated", {
+                time: generatedAt.toLocaleTimeString(locale),
+            })}
+            </span>) : null}
         </div>
 
-        <div className="uuid-version-switch" role="radiogroup" aria-label="UUID version">
+        <div className="uuid-version-switch" role="radiogroup" aria-label={t("labels.version")}>
           <label className={version === 4 ? "active" : ""}>
             <input type="radio" name="uuid-version" value="4" checked={version === 4} onChange={() => setVersion(4)}/>
             <span>
-              <strong>Version 4</strong>
-              Random identifiers
+              <strong>{t("versions.four")}</strong>
+              {t("versions.random")}
             </span>
           </label>
           <label className={version === 7 ? "active" : ""}>
             <input type="radio" name="uuid-version" value="7" checked={version === 7} onChange={() => setVersion(7)}/>
             <span>
-              <strong>Version 7</strong>
-              Time-ordered identifiers
+              <strong>{t("versions.seven")}</strong>
+              {t("versions.ordered")}
             </span>
           </label>
         </div>
 
         <div className="uuid-count-row">
           <label htmlFor="uuid-count">
-            Number of UUIDs
+            {t("labels.count")}
             <input id="uuid-count" type="number" min="1" max="100" value={count} onChange={(event) => setCount(Number(event.target.value))} onBlur={() => setCount((current) => Math.min(100, Math.max(1, Math.round(current || 1))))}/>
           </label>
-          <div className="uuid-count-presets" aria-label="UUID count presets">
+          <div className="uuid-count-presets" aria-label={t("labels.countPresets")}>
             {COUNT_PRESETS.map((preset) => (<button key={preset} type="button" className={count === preset ? "active" : ""} aria-pressed={count === preset} onClick={() => setCount(preset)}>
                 {preset}
               </button>))}
@@ -71,73 +78,77 @@ export function UuidGeneratorTool() {
 
         <div className="uuid-format-grid">
           <label>
-            Output layout
+            {t("labels.layout")}
             <select value={outputFormat} onChange={(event) => setOutputFormat(event.target.value as UuidOutputFormat)}>
-              <option value="lines">One per line</option>
-              <option value="comma">Comma separated</option>
-              <option value="json">JSON array</option>
-              <option value="sql">SQL quoted list</option>
+              <option value="lines">{t("layouts.lines")}</option>
+              <option value="comma">{t("layouts.comma")}</option>
+              <option value="json">{t("layouts.json")}</option>
+              <option value="sql">{t("layouts.sql")}</option>
             </select>
           </label>
           <label className="checkbox-field">
             <input type="checkbox" checked={uppercase} onChange={(event) => setUppercase(event.target.checked)}/>
-            Uppercase
+            {t("labels.uppercase")}
           </label>
           <label className="checkbox-field">
             <input type="checkbox" checked={hyphens} onChange={(event) => setHyphens(event.target.checked)}/>
-            Include hyphens
+            {t("labels.hyphens")}
           </label>
           <label className="checkbox-field">
             <input type="checkbox" checked={braces} onChange={(event) => setBraces(event.target.checked)}/>
-            Wrap in braces
+            {t("labels.braces")}
           </label>
         </div>
 
         <ToolActions>
           <button type="button" className="primary-button" onClick={generate}>
-            Generate UUIDs
+            {t("actions.generate")}
           </button>
           <button type="button" className="secondary-button" disabled={!values.length} onClick={() => {
             setValues([]);
             setGeneratedAt(null);
         }}>
-            Clear batch
+            {t("actions.clear")}
           </button>
         </ToolActions>
-        <p className="uuid-stability-note">
-          Formatting changes reuse the current batch. Only Generate UUIDs
-          creates new identifiers.
-        </p>
+        <p className="uuid-stability-note">{t("descriptions.stability")}</p>
       </section>
 
       <section className="uuid-output-panel" aria-labelledby="uuid-output-heading">
         <div className="uuid-section-heading">
           <div>
-            <p className="eyebrow">Current batch</p>
-            <h2 id="uuid-output-heading">Generated UUIDs</h2>
+            <p className="eyebrow">{t("headings.current")}</p>
+            <h2 id="uuid-output-heading">{t("headings.generated")}</h2>
           </div>
           <span>
             {values.length
-            ? `${uniqueCount}/${values.length} unique`
-            : "No batch yet"}
+            ? t("counts.unique", {
+                unique: uniqueCount,
+                total: values.length,
+            })
+            : t("empty.batch")}
           </span>
         </div>
-        <textarea id="uuid-output" aria-label={`Version ${version} UUIDs`} value={output} readOnly rows={14} placeholder="Choose your settings and generate a batch."/>
+        <textarea id="uuid-output" aria-label={t("labels.outputAria", { version })} value={output} readOnly rows={14} placeholder={t("placeholders.output")}/>
         <div className="uuid-output-meta">
-          <span>{values.length} identifiers</span>
-          <span>{output.length.toLocaleString()} characters</span>
+          <span>{t("counts.identifiers", { count: values.length })}</span>
+          <span>
+            {t("counts.characters", {
+            count: output.length.toLocaleString(locale),
+        })}
+          </span>
         </div>
-        <ToolActions>
+        <ToolActions sticky>
           <CopyButton text={output} toolSlug="uuid-generator">
-            Copy batch
+            {t("actions.copy")}
           </CopyButton>
           <DownloadButton content={output} filename={outputFormat === "json"
             ? `uuid-v${version}-batch.json`
             : `uuid-v${version}-batch.txt`} mimeType={outputFormat === "json" ? "application/json" : "text/plain"} toolSlug="uuid-generator">
-            Download batch
+            {t("actions.download")}
           </DownloadButton>
           <button type="button" className="secondary-button" disabled={!values.length} onClick={() => setInspectValue(values[0] ?? "")}>
-            Inspect first UUID
+            {t("actions.inspectFirst")}
           </button>
         </ToolActions>
       </section>
@@ -145,45 +156,57 @@ export function UuidGeneratorTool() {
       <section className="uuid-inspector" aria-labelledby="uuid-inspector-heading">
         <div className="uuid-section-heading">
           <div>
-            <p className="eyebrow">Validator</p>
-            <h2 id="uuid-inspector-heading">Inspect a UUID</h2>
+            <p className="eyebrow">{t("headings.validator")}</p>
+            <h2 id="uuid-inspector-heading">{t("headings.inspect")}</h2>
           </div>
         </div>
         <label htmlFor="uuid-inspect-input">
-          UUID to inspect
-          <input id="uuid-inspect-input" value={inspectValue} placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autoCapitalize="off" autoComplete="off" spellCheck={false} onChange={(event) => setInspectValue(event.target.value)}/>
+          {t("labels.inspectInput")}
+          <input id="uuid-inspect-input" value={inspectValue} placeholder={t("placeholders.uuid")} autoCapitalize="off" autoComplete="off" spellCheck={false} onChange={(event) => setInspectValue(event.target.value)}/>
         </label>
 
         {inspected ? (inspected.valid ? (<>
-              <ValidationMessage type="success" message={`Valid UUID · version ${inspected.version} · ${inspected.variant} variant.`}/>
+              <ValidationMessage type="success" message={t("messages.valid", {
+                version: inspected.version ?? t("labels.unknown"),
+                variant: inspected.variant
+                    ? t(`variants.${inspected.variant}`)
+                    : t("labels.unknown"),
+            })}/>
               <dl className="uuid-inspection-grid">
                 <div>
-                  <dt>Canonical form</dt>
-                  <dd><code>{inspected.canonical}</code></dd>
+                  <dt>{t("labels.canonical")}</dt>
+                  <dd>
+                    <code>{inspected.canonical}</code>
+                  </dd>
                 </div>
                 <div>
-                  <dt>Version</dt>
+                  <dt>{t("labels.version")}</dt>
                   <dd>{inspected.version}</dd>
                 </div>
                 <div>
-                  <dt>Variant</dt>
-                  <dd>{inspected.variant}</dd>
+                  <dt>{t("labels.variant")}</dt>
+                  <dd>
+                    {inspected.variant
+                ? t(`variants.${inspected.variant}`)
+                : t("labels.unknown")}
+                  </dd>
                 </div>
                 <div>
-                  <dt>Embedded time</dt>
+                  <dt>{t("labels.embeddedTime")}</dt>
                   <dd>
                     {inspected.timestamp
-                ? inspected.timestamp.toISOString()
-                : "Not present in this UUID version"}
+                ? new Intl.DateTimeFormat(locale, {
+                    dateStyle: "medium",
+                    timeStyle: "long",
+                }).format(inspected.timestamp)
+                : t("labels.noTimestamp")}
                   </dd>
                 </div>
               </dl>
-              <CopyButton text={inspected.canonical} toolSlug="uuid-generator" ariaLabel="Copy canonical UUID">
-                Copy canonical UUID
+              <CopyButton text={inspected.canonical} toolSlug="uuid-generator" ariaLabel={t("actions.copyCanonical")}>
+                {t("actions.copyCanonical")}
               </CopyButton>
-            </>) : (<ValidationMessage type="error" message="Enter 32 hexadecimal UUID characters, with optional hyphens or matching braces."/>)) : (<p className="empty-state">
-            Paste a UUID to check its structure, version, and variant.
-          </p>)}
+            </>) : (<ValidationMessage type="error" message={t("errors.invalid")}/>)) : (<p className="empty-state">{t("empty.inspector")}</p>)}
       </section>
     </div>);
 }
