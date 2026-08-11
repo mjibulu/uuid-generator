@@ -1,43 +1,28 @@
-# UUID v4 & v7 Generator
+# **TITLE**
 
-Generate, format, copy, download, and inspect bounded batches of UUIDv4 or time-ordered UUIDv7 identifiers in the browser.
+**DESCRIPTION**
+
+[Features](#features) · [Usage](#usage) · [Run locally](#run-locally) · [Contributing](./.github/CONTRIBUTING.md) · [Licence](./LICENSE)
 
 ## Features
 
-- Cryptographically random UUIDv4 and time-ordered UUIDv7 generation
-- Quick batch presets plus bounded custom quantities
-- One-per-line, comma-separated, JSON-array, and SQL-quoted list layouts
-- Canonical, uppercase, compact, and braced value formatting without regenerating the batch
-- Batch count and uniqueness reporting with clear and regenerate controls
-- Copy and tool-named text-file downloads for the formatted batch
-- UUID validation with version, RFC variant, canonical form, and UUIDv7 timestamp inspection
+**FEATURE_LIST**
 
 ## Screenshot
 
-![UUID v4 & v7 Generator interface](./public/tool-preview.webp)
+## Usage
 
-## How to use
+**HOW_TO_LIST**
 
-1. Select UUIDv4 for random identifiers or UUIDv7 for time-ordered identifiers.
-2. Choose a count preset or enter the required bounded batch size.
-3. Select the list layout and optional uppercase, compact, or brace formatting, then generate.
-4. Change formatting without replacing the generated values, then copy, download, clear, or regenerate the batch.
-5. Paste any UUID into the inspector, or send the first generated value there, to review validity, version, variant, canonical form, and timestamp details.
+## Browser support
 
-## Browser support and limitations
+Works with current versions of Chrome/Chromium, Firefox, and Safari.
 
-The current stable releases of Chromium, Firefox, and Safari are supported.
+**BROWSER_SUPPORT_NOTES**
 
-- UUID generation requires the browser Web Crypto API.
-- Download behaviour follows the browser's normal file-download settings.
+## Run locally
 
-## Clone and run locally
-
-Requirements:
-
-- Git
-- Node.js 22.13.x or Node.js 24.x (recommended)
-- Corepack
+You’ll need Git, Corepack, and Node.js 22.13.x or 24.x.
 
 ```bash
 git clone https://github.com/mjibulu/uuid-generator.git
@@ -47,52 +32,39 @@ pnpm install --frozen-lockfile
 pnpm run dev
 ```
 
-The development server prints the local URL to open in your browser.
+Open the local URL shown in the terminal.
 
-## Verify
-
-Fast checks:
+## Checks
 
 ```bash
 pnpm run check
-```
-
-Complete browser verification:
-
-```bash
 pnpm run verify
 ```
 
-## Build and host
+## Build
 
 ```bash
 pnpm run build
 ```
 
-Upload the contents of `dist/` to a static host. The application supports both
-root and subdirectory hosting and needs no environment variables.
+The production files are created in `dist/` and can be hosted on GitHub Pages, Netlify, Cloudflare Pages, Vercel, or any static host.
 
-The same output can be deployed with GitHub Pages, Netlify, Cloudflare Pages,
-Vercel static hosting, or an ordinary file upload.
+## Privacy
 
-## Data and network behaviour
+The app runs in your browser and does not include analytics, ads, or telemetry.
 
-The application ships without analytics or telemetry. Tool processing occurs
-in the browser, and the primary browser tests fail unexpected external
-requests. See [PRIVACY.md](./PRIVACY.md) for the storage and browser API
-inventory.
+**STORAGE_DESCRIPTION**
+
+**BROWSER_API_DESCRIPTION**
 
 ## Contributing
 
-Issues and pull requests are welcome. Read
-[CONTRIBUTING.md](./CONTRIBUTING.md) before submitting a change.
+Issues and pull requests are welcome. See the [contribution guide](./.github/CONTRIBUTING.md) before submitting changes.
 
 ## Credits
 
-Created by M. Jibulu for [eBURP](https://eburp.com/).
+Created by Mujeeb for [eBURP](https://eburp.com/).
 
 ## Licence
 
-Original code is available under the [MIT Licence](./LICENSE). Dependencies and
-assets retain their own licences; see
-[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md).
+Licensed under the [MIT Licence](./LICENSE). Third-party dependencies keep their respective licences.

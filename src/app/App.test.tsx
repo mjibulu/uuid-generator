@@ -7,14 +7,15 @@ describe("UUID v4 & v7 Generator", () => {
     const user = userEvent.setup();
     render(<App />);
 
-    await user.click(screen.getByRole("button", { name: "Generate UUIDs" }));
+    await user.click(screen.getByRole("button", { name: "5" }));
+    await user.click(screen.getByRole("button", { name: "Generate" }));
     const output = screen.getByRole("textbox", { name: "Version 4 UUIDs" });
     const original = (output as HTMLTextAreaElement).value.split("\n");
     expect(original).toHaveLength(5);
     expect(original.every((value) => /^[0-9a-f-]{36}$/u.test(value))).toBe(true);
 
     await user.selectOptions(
-      screen.getByRole("combobox", { name: "Output layout" }),
+      screen.getByRole("combobox", { name: "Layout" }),
       "json",
     );
     const formatted = JSON.parse((output as HTMLTextAreaElement).value) as string[];
@@ -27,12 +28,12 @@ describe("UUID v4 & v7 Generator", () => {
 
     await user.click(screen.getByRole("radio", { name: /Version 7/u }));
     await user.click(screen.getByRole("button", { name: "1" }));
-    await user.click(screen.getByRole("button", { name: "Generate UUIDs" }));
-    await user.click(screen.getByRole("button", { name: "Inspect first UUID" }));
+    await user.click(screen.getByRole("button", { name: "Generate" }));
+    await user.click(screen.getByRole("button", { name: "Inspect first" }));
 
-    expect(screen.getByText(/Valid UUID/u)).toHaveTextContent("version 7");
+    expect(screen.getByRole("status")).toHaveTextContent("v7");
     expect(screen.getByText("Embedded time").nextElementSibling).not.toHaveTextContent(
-      "Not present",
+      "None",
     );
   });
 });
